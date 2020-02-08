@@ -1,0 +1,118 @@
+public class Main{
+    Node head;
+    // A node |data|Pointer|
+    
+    class Node{
+        int data;
+        Node next;
+        Node(int data){
+            this.data = data;
+            next = null;
+        }
+    }
+    
+    // Insert Data at the front
+    public void Push(int data){
+        Node newNode = new Node(data);
+        newNode.next = head;
+        head = newNode;
+    }
+    
+    // Insert at the last node
+    public void AfterNode(int data){
+        Node newNode = new Node(data);
+        Node temp = head;
+        while(temp.next != null){
+            temp = temp.next;
+        }
+        temp.next = newNode;
+    }
+    
+    // Insert after a specified key
+    public void InsertAfter(int key, int data){
+        if(head == null)
+        return;
+        
+        Node newNode = new Node(data);
+        Node temp = head;
+        while(temp.next != null){
+            if(key == temp.data){
+                break;
+            }
+            temp = temp.next;
+        }
+        newNode.next = temp.next;
+        temp.next = newNode;
+    }
+    
+    // Delete the data at the last  
+    public void pop(){
+        Node temp = head;
+        Node node = head;
+        while(temp.next.next != null){
+            temp = temp.next;
+            node = node.next;
+        }
+        node.next = null;
+    }
+    
+    // Delete data at the
+    public void DeleteFront(){
+        Node temp = head;
+        head = temp.next;
+        temp.next = null;
+    }
+    
+    // Delete the data by key
+    public void DelteAny(int key){
+        Node temp = head;
+        Node node = head;
+        while(temp.next != null){
+            if(key == temp.data){
+                node.next = temp.next;
+            }
+            node = temp;
+            temp = temp.next;
+        }
+    }
+    
+    // Find the length of Linked list
+    public int Length(){
+        Node temp = head;
+        int count = 0;
+        while(temp != null){
+            count += 1;
+            temp = temp.next;
+        }
+        return count;
+    }
+    
+    
+    // Print the data of Linked list
+        public void Traverse(){
+        Node temp = head;
+        while(temp != null){
+            System.out.print(temp.data+" ");
+            temp = temp.next;
+        }
+    }
+
+    // Main program    
+    public static void main(String args[]){
+        Main m = new Main();
+        m.Push(5);
+        m.Push(8);
+        m.Push(12);
+        m.AfterNode(15);
+        m.AfterNode(20);
+        m.AfterNode(25);
+        m.Push(1);
+        m.InsertAfter(1,2);
+        m.InsertAfter(20, 22);
+        m.pop();
+        m.DeleteFront();
+        m.DelteAny(5);
+        m.Traverse();
+        System.out.println("\nLength : "+m.Length());
+            }
+}
